@@ -11,7 +11,6 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
   useSidebar,
 } from '@/components/ui/sidebar';

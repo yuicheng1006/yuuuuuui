@@ -1,0 +1,47 @@
+import Image from 'next/image';
+import { fetchNotionPageContent } from '@/utils/notion-api';
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+
+export default async function RemoteMdxPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const { info, renderHTML } = await fetchNotionPageContent(slug);
+
+  const { icon, properties } = info as PageObjectResponse;
+
+  let name = '';
+  if (properties?.Name && properties?.Name?.type === 'title') {
+    name = properties?.Name?.title?.[0]?.plain_text;
+  }
+
+  console.log('namename', name, properties);
+
+  let iconImage = { type: '', url: '' };
+  if (icon?.type === 'external') {
+    iconImage = { type: icon?.type, url: icon?.external?.url };
+  }
+  return (
+    <div className="max-w-[710px] mx-auto lg:mt-12 lg:mb-20 md:my-12 my-8">
+      <Image
+        width={100}
+        height={100}
+        src={iconImage?.url}
+        alt={iconImage?.type}
+        className="md:w-[100px] md:h-[100px] w-[50px] h-[50px]"
+      />
+
+      <h3 className="md:text-4xl text-3xl font-extrabold text-[#55534F] my-4">
+        {name}
+      </h3>
+      <div className="article-item">
+        <div dangerouslySetInnerHTML={{ __html: renderHTML ?? '' }} />
+      </div>
+    </div>
+  );
+}
+
+

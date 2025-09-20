@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -10,10 +8,10 @@ import { BlockType } from '@/assets/data/block-type';
 import { Title } from '@/components/title';
 
 type BlockProps = {
-  type?: 'works' | 'reels';
+  type?: 'work' | 'reels' | 'writings';
 };
 
-export default function Block({ type = 'works' }: BlockProps) {
+export default function Block({ type = 'work' }: BlockProps) {
   return (
     <section id={type}>
       <div className="relative lg:ml-[122px] ml-[15vw] lg:p-[58px_40px_0px_80px] pt-5">
@@ -28,7 +26,15 @@ export default function Block({ type = 'works' }: BlockProps) {
             {BlockType[type].subtitle}
           </p>
           <div className="absolute right-5 bottom-0 flex items-end gap-1">
-            <Link className='flex gap-2' href="/hike">
+            <Link
+              className="flex gap-2"
+              target={type === 'reels' ? '_blank' : '_self'}
+              href={
+                type === 'reels'
+                  ? 'https://www.instagram.com/uwu_ueee/'
+                  : `/${type}`
+              }
+            >
               VIEW MORE
               <MoveRight />
             </Link>

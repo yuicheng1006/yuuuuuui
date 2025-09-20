@@ -23,8 +23,8 @@ export default function Hike() {
                   <Image
                     src={`/hike/m_${index + 1}.jpg`}
                     alt=""
-                    width="586"
-                    height="586"
+                    width="1000"
+                    height="1000"
                     className="w-[586px] max-h-[360px] object-cover object-center aspect-[586/360]"
                   />
                 </figure>

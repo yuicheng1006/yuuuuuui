@@ -1,3 +1,8 @@
+import {
+  RichTextItemResponse,
+  PartialSelectResponse,
+} from '@notionhq/client/build/src/api-endpoints';
+
 export interface MenuItems {
   title: string;
   href: string;
@@ -10,6 +15,7 @@ export interface TypeProps {
 }
 
 export interface BlockTypeProps {
-  works: TypeProps;
+  work: TypeProps;
   reels: TypeProps;
+  writings: TypeProps;
 }

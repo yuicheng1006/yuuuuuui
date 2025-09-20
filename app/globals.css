@@ -116,6 +116,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
@@ -173,13 +174,6 @@
   margin-right: 20px;
 }
 
-@media (min-width: 768px) {
-  .inner {
-    grid-template-columns: repeat(7, 36.63rem);
-    gap: 2.5rem 2rem;
-  }
-}
-
 .item:nth-child(2),
 .item:nth-child(5),
 .item:nth-child(9),
@@ -187,29 +181,11 @@
   transform: translateY(-4.92rem);
 }
 
-@media (min-width: 768px) {
-  .item:nth-child(2),
-  .item:nth-child(5),
-  .item:nth-child(9),
-  .item:nth-child(12) {
-    transform: translateY(-10.38rem);
-  }
-}
-
 .item:nth-child(3),
 .item:nth-child(6),
 .item:nth-child(10),
 .item:nth-child(13) {
   transform: translateY(-2rem);
-}
-
-@media (min-width: 768px) {
-  .item:nth-child(3),
-  .item:nth-child(6),
-  .item:nth-child(10),
-  .item:nth-child(13) {
-    transform: translateY(-4.25rem);
-  }
 }
 
 .hike_container {
@@ -222,14 +198,6 @@
   top: 30vw;
 }
 
-@media (min-width: 768px) {
-  .hike_container {
-    container: memberBody/inline-size;
-    padding-top: 20.81rem;
-    top: 0;
-  }
-}
-
 .hike_title {
   font-size: clamp(1.5rem, 7vw, 2.5rem);
   font-weight: bold;
@@ -237,12 +205,6 @@
   line-height: 1;
   text-align: center;
   font-family: 'Poppins', 'Noto Sans JP', sans-serif;
-}
-
-@media (min-width: 768px) {
-  .hike_title {
-    font-size: min(7.152cqw, 6.44rem);
-  }
 }
 
 /* 自定義動畫 - 持續在背景執行 */
@@ -286,4 +248,159 @@
 
 .animate-text-popup {
   animation: text-popup 4s ease-in-out infinite;
+}
+
+.article-item h3 {
+  font-size: clamp(1rem, 7vw, 1.6rem);
+  font-weight: 800;
+}
+
+
+.article-item p {
+  margin-bottom: 10px;
+  white-space: normal;
+  min-height: 24px;
+  font-weight: 500;
+}
+
+.article-item .notion-code {
+  margin: 20px 0;
+}
+
+.article-item code {
+  width: 100%;
+  display: inline-block;
+  border-radius: 10px;
+  white-space: break-spaces;
+  word-break: break-all;
+}
+
+.article-item code.notion-text-code {
+  width: auto;
+  padding: 5px;
+  color: red;
+  background: #f9f9f9;
+}
+
+.article-item code {
+  padding: 18px 20px;
+  background: #f9f9f9;
+}
+
+.article-item blockquote {
+  position: relative;
+  white-space: pre-line;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  margin: 30px 0;
+  background: rgb(249, 249, 249, 0.8);
+}
+
+.article-item blockquote::before {
+  content: '✿ ✿ ✿';
+  color: #ccc;
+  font-size: 1.5rem;
+  position: absolute;
+  top: -18px;
+  left: -5px;
+}
+.article-item blockquote::after {
+  content: '✿ ✿ ✿';
+  color: #ccc;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: -18px;
+  right: -5px;
+}
+
+.article-item a {
+  color: #d56a59;
+  border-bottom: 1px solid #d56a59;
+  opacity: 0.7;
+}
+
+.article-item a:hover {
+  opacity: 1;
+}
+
+.article-item table {
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.article-item tbody {
+  padding: 10px 15px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.article-item td {
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  background: transparent;
+}
+
+.article-item tr:first-child .notion-table_cell {
+  background: rgba(245, 244, 244, 0.8);
+}
+
+.article-item hr {
+  border-color: #ccc;
+  margin: 30px 0;
+}
+
+.article-item .notion-image {
+  margin: 20px 0;
+  outline: 1.5px solid #ccc;
+}
+
+.article-item img {
+  width: 100%;
+}
+
+.article-item .notion-column_list {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+
+.article-item .notion-column_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: repeat(7, 36.63rem);
+    gap: 2.5rem 2rem;
+  }
+  .item:nth-child(2),
+  .item:nth-child(5),
+  .item:nth-child(9),
+  .item:nth-child(12) {
+    transform: translateY(-10.38rem);
+  }
+  .item:nth-child(3),
+  .item:nth-child(6),
+  .item:nth-child(10),
+  .item:nth-child(13) {
+    transform: translateY(-4.25rem);
+  }
+  .hike_container {
+    container: memberBody/inline-size;
+    padding-top: 20.81rem;
+    top: 0;
+  }
+  .hike_title {
+    font-size: min(7.152cqw, 6.44rem);
+  }
+  .article-item .notion-column_list {
+    flex-direction: row-reverse;
+    gap: 20px;
+  }
+  .article-item .notion-image {
+    margin: 10px 0;
+  }
 }

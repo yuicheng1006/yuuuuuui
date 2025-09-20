@@ -12,13 +12,13 @@ const NavLinks = (): MenuItems[] => {
       href: '/work',
     },
     {
+      title: 'WRITINGS',
+      href: '/writings',
+    },
+    {
       title: 'HIKE',
       href: '/hike',
     },
-    // {
-    //   title: 'WRITTINGS',
-    //   href: '/writtings',
-    // },
     {
       title: 'INSTAGRAM',
       href: 'https://www.instagram.com/uwu_ueee/',
