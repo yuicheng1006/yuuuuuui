@@ -10,13 +10,17 @@ export const size = {
 
 export const contentType = 'image/png';
 
-export default async function Image({ params }: { params: { slug: string } }) {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/hike/mountains.json`,
   );
   const hikes = await res.json();
-
-  const { slug } = params;
 
   const result = (Object.values(hikes).flat() as HikeDataProps[]).find(
     (item) => item?.mountainENName === slug,
