@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { NotFoundComp } from '@/components/not-found-comp';
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params;
