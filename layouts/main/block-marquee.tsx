@@ -39,7 +39,6 @@ const MarqueeItems = async () => {
       {datas?.map((data, index) => {
         const { properties } = data;
 
-        console.log('properties', properties);
         const { name, page, year, cover } = properties;
 
         let title = 'No Title';
@@ -63,7 +62,11 @@ const MarqueeItems = async () => {
         }
 
         return (
-          <Link href={`/work/${id}`} className="col border-2 border-l-0" key={index}>
+          <Link
+            href={`/work/${id}`}
+            className="col border-2 border-l-0"
+            key={index}
+          >
             <div
               key={index}
               className={cn(

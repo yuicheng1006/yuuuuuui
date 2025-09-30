@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation';
+
 import { Client } from '@notionhq/client';
 import { NotionRenderer } from '@notion-render/client';
 
@@ -36,13 +38,9 @@ export const fetchNotionCategories = async () => {
       },
     });
 
-    console.log('resresres', res);
-
     const firstResult: DataSourceObjectResponse | any = res.results?.find(
       (item) => item.id === process.env.NOTION_ARTICLE_DATABASE_ID,
     );
-
-    console.log('firstResult', firstResult);
 
     const categories =
       firstResult?.properties?.category?.multi_select?.options || [];
@@ -59,11 +57,48 @@ export const fetchNotionCategories = async () => {
   }
 };
 
+// 取得文章的年份
+export const fetchNotionYears = async () => {
+  try {
+    // 檢查 notion 客戶端是否正確初始化
+    if (!process.env.NOTION_API_TOKEN) {
+      console.warn('NOTION_API_TOKEN 環境變數未設定');
+      return {
+        categories: [],
+      };
+    }
+
+    const res = await notion.search({
+      query: '',
+      page_size: 100,
+      filter: {
+        value: 'data_source',
+        property: 'object',
+      },
+    });
+
+    const firstResult: DataSourceObjectResponse | any = res.results?.find(
+      (item) => item.id === process.env.NOTION_EVENT_DATABASE_ID,
+    );
+
+    const years = firstResult?.properties?.year?.multi_select?.options || [];
+
+    return {
+      years,
+    };
+  } catch (error) {
+    console.error('查詢資料庫失敗：', error);
+    console.error('錯誤詳情：', JSON.stringify(error, null, 2));
+    return {
+      categories: [],
+    };
+  }
+};
+
 // 取得資料庫列表
 export const fetchNotionDatabase = async (
   database_id: string,
 ): Promise<PageObjectResponse[]> => {
-  console.log('database_id12', database_id);
   try {
     // 檢查 notion 客戶端是否正確初始化
     if (!process.env.NOTION_API_TOKEN) {
@@ -78,6 +113,12 @@ export const fetchNotionDatabase = async (
 
     const response = await notion.dataSources.query({
       data_source_id: database_id,
+      sorts: [
+        {
+          property: 'order',
+          direction: 'descending',
+        },
+      ],
     });
 
     return response.results as PageObjectResponse[];
@@ -92,7 +133,7 @@ export const fetchNotionDatabase = async (
 export const fetchNotionPageContent = async (
   page_id: string,
 ): Promise<{
-  info: GetPageResponse  | null;
+  info: GetPageResponse | null;
   renderHTML: string | null;
 }> => {
   try {
@@ -120,8 +161,6 @@ export const fetchNotionPageContent = async (
       page_id: page_id,
     });
 
-    console.log('results12', results);
-
     const html = await renderer.render(
       ...(results as ParagraphBlockObjectResponse[]),
     );
@@ -130,6 +169,7 @@ export const fetchNotionPageContent = async (
   } catch (error) {
     console.error('取得頁面內容失敗：', error);
     console.error('錯誤詳情：', JSON.stringify(error, null, 2));
+
     return {
       info: null,
       renderHTML: null,

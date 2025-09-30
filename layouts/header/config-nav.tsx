@@ -3,10 +3,10 @@ import { Instagram } from 'lucide-react';
 
 const NavLinks = (): MenuItems[] => {
   return [
-    {
-      title: 'ABOUT',
-      href: '/about',
-    },
+    // {
+    //   title: 'ABOUT',
+    //   href: '/about',
+    // },
     {
       title: 'WORK',
       href: '/work',

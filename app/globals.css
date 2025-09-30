@@ -33,6 +33,8 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-main: var(--main);
+  --color-sub: var(--sub);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -51,6 +53,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
+  --main: #d56a59;
+  --sub: #55534f;
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
@@ -158,6 +162,11 @@
   scrollbar-color: transparent transparent;
 }
 
+::selection {
+  background: #d56a59;
+  color: #ffffff;
+}
+
 .text-stroke-3 {
   /* text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black, 1.5px 1.5px 0 black; */
   -webkit-text-stroke: 0.06em black;
@@ -249,12 +258,14 @@
 .animate-text-popup {
   animation: text-popup 4s ease-in-out infinite;
 }
+.article-item {
+  margin-top: 80px;
+}
 
 .article-item h3 {
   font-size: clamp(1rem, 7vw, 1.6rem);
   font-weight: 800;
 }
-
 
 .article-item p {
   margin-bottom: 10px;
@@ -371,6 +382,29 @@
   gap: 0;
 }
 
+.loading-group img {
+  animation: wavewave 1.4s linear infinite;
+}
+.loading-group img:nth-child(2) {
+  animation-delay: -1.2s;
+}
+
+.loading-group img:nth-child(3) {
+  animation-delay: -1s;
+}
+
+@keyframes wavewave {
+  0%,
+  60%,
+  100% {
+    transform: initial;
+  }
+
+  30% {
+    transform: translateY(-15px);
+  }
+}
+
 @media (min-width: 768px) {
   .inner {
     grid-template-columns: repeat(7, 36.63rem);
@@ -395,6 +429,9 @@
   }
   .hike_title {
     font-size: min(7.152cqw, 6.44rem);
+  }
+  .article-item {
+    margin-top: 50px;
   }
   .article-item .notion-column_list {
     flex-direction: row-reverse;

@@ -1,4 +1,5 @@
+import { LoadingAnimate } from '@/components/loading-animate';
+
 export default function Loading() {
-  // Or a custom loading skeleton component
-  return <p>Loading...</p>;
+  return <LoadingAnimate />;
 }

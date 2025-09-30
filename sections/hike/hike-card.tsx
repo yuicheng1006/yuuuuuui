@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 import { MoveRight } from 'lucide-react';
 
+import { HikeDataProps } from '@/types/types';
+
 import {
   Carousel,
   CarouselContent,
@@ -14,7 +16,7 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 
-type HikeCardProps = { years: string; items: [] };
+type HikeCardProps = { years: string; items: HikeDataProps[] };
 
 export const HikeCard = React.memo(({ years, items }: HikeCardProps) => {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -53,17 +55,17 @@ export const HikeCard = React.memo(({ years, items }: HikeCardProps) => {
         <div className="lg:block hidden">
           <Carousel setApi={setApi} className="w-full" opts={{ loop: false }}>
             <CarouselContent>
-              {Array.from({ length: 10 }).map((_, index) => (
+              {items?.map((item, index) => (
                 <CarouselItem key={index} className="md:basis-2/5 pl-6">
-                  <CardItem key={index} />
+                  <CardItem key={index} item={item} />
                 </CarouselItem>
               ))}
             </CarouselContent>
           </Carousel>
         </div>
         <div className="lg:hidden flex gap-4 overflow-scroll pr-8">
-          {Array.from({ length: 10 }).map((_, index) => (
-            <CardItem key={index} />
+          {items?.map((item, index) => (
+            <CardItem key={index} item={item} />
           ))}
         </div>
       </div>
@@ -71,7 +73,7 @@ export const HikeCard = React.memo(({ years, items }: HikeCardProps) => {
   );
 });
 
-const CardItem = React.memo(() => {
+const CardItem = React.memo(({ item }: { item: any }) => {
   return (
     <div className="w-full h-full grid gap-2 p-0">
       <div
@@ -82,9 +84,9 @@ const CardItem = React.memo(() => {
           ' rounded-lg overflow-hidden',
         )}
       >
-        <Link href="/hike/m_2.jpg">
+        <Link href={`/hike/${item?.mountainENName}`}>
           <Image
-            src="/hike/m_2.jpg"
+            src={item?.images[0]}
             alt="Mountain"
             width={404}
             height={453}
@@ -92,11 +94,18 @@ const CardItem = React.memo(() => {
           />
         </Link>
       </div>
-      <h3 className="text-xl font-extrabold">hike | 錐麓</h3>
-      <Link href="/hike/m_2.jpg" className="flex gap-12 mt-4">
-        <span className="font-bold">More Details</span>
-        <MoveRight />
-      </Link>
+      <div className="h-25 flex flex-col justify-between">
+        <h3 className="text-xl font-extrabold">
+          {item?.month} | {item?.mountainName}
+        </h3>
+        <Link
+          href={`/hike/${item?.mountainENName}`}
+          className="flex gap-12 mt-4"
+        >
+          <span className="md:text-base text-sm font-bold">More Details</span>
+          <MoveRight />
+        </Link>
+      </div>
     </div>
   );
 });

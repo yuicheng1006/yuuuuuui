@@ -1,8 +1,3 @@
-import {
-  RichTextItemResponse,
-  PartialSelectResponse,
-} from '@notionhq/client/build/src/api-endpoints';
-
 export interface MenuItems {
   title: string;
   href: string;
@@ -18,4 +13,13 @@ export interface BlockTypeProps {
   work: TypeProps;
   reels: TypeProps;
   writings: TypeProps;
+}
+
+export interface HikeDataProps {
+  mountainName: string;
+  mountainENName: string;
+  month: string;
+  date: string;
+  intro: string;
+  images: string[];
 }
