@@ -72,6 +72,7 @@ export const WorkComp = React.memo(
                   alt="Work Image"
                   width={1000}
                   height={1000}
+                  unoptimized
                   className="w-full h-auto aspect-[5/3] object-cover rounded-lg border-2"
                 />
                 <h2 className="text-gray-600 font-bold">{name}</h2>

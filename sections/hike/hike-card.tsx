@@ -90,6 +90,7 @@ const CardItem = React.memo(({ item }: { item: any }) => {
             alt="Mountain"
             width={404}
             height={453}
+            unoptimized
             className="w-full h-full object-cover"
           />
         </Link>
