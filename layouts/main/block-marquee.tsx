@@ -76,7 +76,7 @@ const MarqueeItems = async () => {
               )}
             >
               <Image
-                src={covers || '/placeholder.png'}
+                src={covers}
                 alt={title}
                 width={1000}
                 height={1000}
