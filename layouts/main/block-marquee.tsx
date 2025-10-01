@@ -80,6 +80,7 @@ const MarqueeItems = async () => {
                 alt={title}
                 width={1000}
                 height={1000}
+                unoptimized
                 className="w-full h-full object-cover object-center"
               />
             </div>

@@ -6,4 +6,6 @@ services:
     container_name: yuuuuuui-web
     ports:
       - "3000:3000"
+    env_file:
+      - .env 
     restart: always
