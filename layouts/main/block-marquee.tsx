@@ -78,8 +78,8 @@ const MarqueeItems = async () => {
               <Image
                 src={covers}
                 alt={title}
-                width={1000}
-                height={1000}
+                width={999}
+                height={999}
                 unoptimized
                 className="w-full h-full object-cover object-center"
               />

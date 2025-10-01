@@ -22,6 +22,7 @@ const notoSansTC = Noto_Sans_TC({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL!),
   title: 'Hi there, this is Yui!',
   description:
     'This is a personal website featuring my online portfolio and daily life.',
