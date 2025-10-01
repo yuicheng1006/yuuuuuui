@@ -41,4 +41,5 @@ jobs:
             docker image prune -af
             docker container prune -f
             docker volume prune -f
+            sudo systemctl reload nginx
           "
