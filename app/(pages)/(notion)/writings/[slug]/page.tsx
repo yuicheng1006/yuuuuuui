@@ -65,6 +65,7 @@ export default async function RemoteMdxPage({
         height={100}
         src={iconImage?.url}
         alt={iconImage?.type}
+        unoptimized
         className="md:w-[100px] md:h-[100px] w-[50px] h-[50px]"
       />
 

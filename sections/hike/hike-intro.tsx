@@ -49,6 +49,7 @@ export const HikeIntro = React.memo(
                       alt="Mountain"
                       width={1000}
                       height={1000}
+                      unoptimized
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -72,6 +73,7 @@ export const HikeIntro = React.memo(
                   alt="Mountain"
                   width={1000}
                   height={1000}
+                  unoptimized
                   className="w-full h-full object-cover"
                 />
               </div>

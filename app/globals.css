@@ -127,39 +127,19 @@
   }
 }
 
-/* 滾動條寬度 */
+/* 完全隱藏 WebKit 瀏覽器的滾動條 */
 *::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  display: none;
 }
 
-/* 滾動條軌道 */
-*::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 3px;
-}
-
-/* 滾動條滑塊 */
-*::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 3px;
-  border: 1px solid oklch(0.922 0 0);
-}
-
-/* 滾動條滑塊 hover */
-*::-webkit-scrollbar-thumb:hover {
-  background: transparent;
-}
-
-/* 滾動條角落 */
-*::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-/* 支援 Firefox 的滾動條樣式 */
+/* 隱藏 Firefox 的滾動條 */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 隱藏 IE/Edge 的滾動條 */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 ::selection {
