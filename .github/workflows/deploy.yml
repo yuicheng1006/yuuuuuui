@@ -8,38 +8,56 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Setup SSH key
         run: |
           echo "${{ secrets.EC2_KEY }}" > key.pem
           chmod 600 key.pem
-
+      
       - name: Deploy on EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
             set -e
+            
+            echo '🔧 修正目錄權限...'
+            sudo chown -R ubuntu:ubuntu /var/www/app
+            
+            echo '📂 進入專案目錄...'
             cd /var/www/app || exit 1
-
+            
             echo '🔄 Pull 最新程式碼...'
             git fetch --all
             git reset --hard origin/main
-
+            git clean -fd
+            
             echo '🛑 停止舊容器...'
-            docker-compose down || true
-
-            echo '🐳 建立新 image...'
-            docker build -t yuuuuuui-web .
-
-            echo '🚀 啟動新容器...'
-            docker-compose up -d --build
-
+            docker compose down || true
+            
+            echo '🐳 建立並啟動新容器...'
+            docker compose up -d --build
+            
+            echo '⏳ 等待容器啟動...'
+            sleep 5
+            
+            echo '✅ 檢查容器狀態...'
+            docker compose ps
+            docker compose logs --tail=20 web
+            
             echo '🧹 清理舊的 Docker 資源...'
             docker image prune -af
             docker container prune -f
             docker volume prune -f
-            sudo systemctl reload nginx
+            
+            echo '🔄 重載 Nginx (如果有)...'
+            sudo systemctl reload nginx || true
+            
+            echo '✨ 部署完成！'
           "
+      
+      - name: Clean up SSH key
+        if: always()
+        run: rm -f key.pem
