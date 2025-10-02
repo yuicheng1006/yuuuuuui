@@ -128,7 +128,7 @@ const WritingsMarqueeItems = async () => {
             <div
               key={index}
               className={cn(
-                'max-w-[425px] max-h-[425px] w-[60vw] h-[60vw]',
+                'max-w-[425px] max-h-[425px] md:w-[50vw] w-full h-[50vw]',
                 'flex items-center justify-center',
                 'object-cover object-center aspect-square',
                 'bg-gray-200 border-b-2',

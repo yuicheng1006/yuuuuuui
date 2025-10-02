@@ -89,30 +89,32 @@ export default function AppSidebar() {
           <NavigationMenuList className="flex-col items-start gap-4 w-full">
             {Menuitems?.map((menuitem, idx) => (
               <NavigationMenuItem key={menuitem?.href} className="w-full">
-                <NavigationMenuLink
-                  asChild
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    'w-full justify-start text-left bg-transparent',
-                  )}
-                >
-                  <Link
-                    href={menuitem?.href}
+                <SidebarTrigger>
+                  <NavigationMenuLink
+                    asChild
                     className={cn(
-                      'relative',
-                      idx !== Menuitems.length - 1 &&
-                        'before:content-[""] before:absolute before:bottom-0 before:left-[50%] before:translate-x-[-50%] before:w-1/3 before:border-b-2 before:border-black',
+                      navigationMenuTriggerStyle(),
+                      'w-full justify-start text-left bg-transparent',
                     )}
-                    target={menuitem?.icon ? '_blank' : undefined}
                   >
-                    {menuitem?.icon ? menuitem.icon : menuitem?.title}
-                  </Link>
-                </NavigationMenuLink>
+                    <Link
+                      href={menuitem?.href}
+                      className={cn(
+                        'relative',
+                        idx !== Menuitems.length - 1 &&
+                          'before:content-[""] before:absolute before:bottom-0 before:left-[50%] before:translate-x-[-50%] before:w-1/3 before:border-b-2 before:border-black',
+                      )}
+                      target={menuitem?.icon ? '_blank' : undefined}
+                    >
+                      {menuitem?.icon ? menuitem.icon : menuitem?.title}
+                    </Link>
+                  </NavigationMenuLink>
+                </SidebarTrigger>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="absolute bottom-0 w-40 h-40 border-t-3 bg-[#F9F9F9]">
+        <div className="absolute bottom-0 w-40 h-28 border-t-3 bg-[#F9F9F9]">
           <Image
             ref={bounceRef}
             src="/isYui.png"
