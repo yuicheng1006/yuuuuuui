@@ -96,14 +96,14 @@ const CardItem = React.memo(({ item }: { item: any }) => {
         </Link>
       </div>
       <div className="h-25 flex flex-col justify-between">
-        <h3 className="text-xl font-extrabold">
+        <h3 className="md:text-xl text-base font-extrabold">
           {item?.month} | {item?.mountainName}
         </h3>
         <Link
           href={`/hike/${item?.mountainENName}`}
           className="flex gap-12 mt-4"
         >
-          <span className="md:text-base text-sm font-bold">More Details</span>
+          <span className="md:text-base text-xs font-bold">More Details</span>
           <MoveRight />
         </Link>
       </div>
