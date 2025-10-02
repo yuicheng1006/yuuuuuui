@@ -10,44 +10,52 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      # 1️⃣ 取得程式碼
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      # 2️⃣ 設定 SSH key
       - name: Setup SSH key
         run: |
           echo "${{ secrets.EC2_KEY }}" > key.pem
           chmod 600 key.pem
       
+      # 3️⃣ SSH 部署到 EC2
       - name: Deploy on EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
             set -e
             
-            echo '🔧 修正目錄權限...'
+            echo '🔧 修正專案目錄權限...'
             sudo chown -R ubuntu:ubuntu /var/www/app
             
-            echo '📂 進入專案目錄...'
+            echo '🛑 停止舊容器...'
             cd /var/www/app || exit 1
+            docker compose down || true
             
-            echo '🔄 Pull 最新程式碼...'
+            echo '🧹 清理 Docker 舊資源...'
+            docker system prune -a --volumes --force
+            docker builder prune --all --force
+            
+            echo '🧹 清理系統資源...'
+            sudo apt-get clean
+            sudo apt-get autoremove --purge -y
+            sudo journalctl --vacuum-time=3d
+            sudo rm -rf /tmp/*
+            
+            echo '📂 拉最新程式碼...'
             git fetch --all
             git reset --hard origin/main
             git clean -fd
             
-            echo '🛑 停止舊容器...'
-            docker compose down || true
-            
             echo '🐳 建立並啟動新容器...'
             docker compose up -d --build
-            
-            echo '⏳ 等待容器啟動...'
-            sleep 5
             
             echo '✅ 檢查容器狀態...'
             docker compose ps
             docker compose logs --tail=20 web
             
-            echo '🧹 清理舊的 Docker 資源...'
+            echo '🔄 清理多餘 Docker（不影響新 build）...'
             docker image prune -af
             docker container prune -f
             docker volume prune -f
@@ -58,6 +66,7 @@ jobs:
             echo '✨ 部署完成！'
           "
       
+      # 4️⃣ 清理本地 GitHub Action 用的 SSH key
       - name: Clean up SSH key
         if: always()
         run: rm -f key.pem
