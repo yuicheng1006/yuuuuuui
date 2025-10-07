@@ -1,6 +1,10 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
+import Autoplay from 'embla-carousel-autoplay';
 
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -11,7 +15,6 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from '@/components/ui/carousel';
-import { cn } from '@/lib/utils';
 
 export default function Banner() {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -32,21 +35,40 @@ export default function Banner() {
   return (
     <section id="banner">
       <div className="py-4 mx-auto overflow-hidden border-b-2 bg-white ">
-        <Carousel setApi={setApi} className="w-full" opts={{ loop: true }}>
+        <Carousel
+          setApi={setApi}
+          className="w-full"
+          opts={{ loop: true }}
+          plugins={[
+            Autoplay({
+              delay: 4000,
+            }),
+          ]}
+        >
           <CarouselContent className="-ml-4 flex items-center min-h-[20vw] max-h-[90vh]">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {Array.from({ length: 4 }).map((_, index) => (
               <CarouselItem
                 key={index}
                 className="2xl:basis-6/13 md:basis-3/6 md:pl-0 pl-4"
               >
                 <Card
-                  className={cn('bg-white border-2 aspect-square', {
-                    'scale-75': index !== current - 1, // 小一點
-                    'scale-85': index === current - 1, // 正常大小
-                  })}
+                  className={cn(
+                    'bg-white border-2 aspect-square p-0 overflow-hidden',
+                    'transform transition-all duration-300',
+                    {
+                      'scale-75': index !== current - 1, // 小一點
+                      'scale-85': index === current - 1, // 正常大小
+                    },
+                  )}
                 >
-                  <CardContent className="h-full flex aspect-video items-center justify-center ">
-                    <span className="text-4xl font-semibold">{index + 1}</span>
+                  <CardContent className="h-full flex aspect-video items-center justify-center p-0">
+                    <Image
+                      src={`/banner/banner_0${index + 1}.jpg`}
+                      alt=""
+                      width="1000"
+                      height="1000"
+                      className="w-full h-full object-cover object-center aspect-square"
+                    />
                   </CardContent>
                 </Card>
               </CarouselItem>
