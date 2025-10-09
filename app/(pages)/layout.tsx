@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 import RootLayout from '@/layouts';
 
-export const revalidate = 0;
+export const revalidate = 3600; // 24 hours
 
 export default function Layout({
   children,

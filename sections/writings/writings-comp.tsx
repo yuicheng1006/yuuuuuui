@@ -42,7 +42,7 @@ export const WritingsComp = React.memo(
           {articles?.map((data, index) => {
             const { id, last_edited_time, properties } = data;
 
-            const { name, category } = properties;
+            const { name, category, order } = properties;
 
             let categoryName = 'No Category';
             if (category && category.type === 'multi_select') {
@@ -53,6 +53,9 @@ export const WritingsComp = React.memo(
             if (name && name.type === 'title') {
               title = name.title?.[0]?.plain_text || 'No Title';
             }
+
+            if (order && order.type === 'number' && order?.number === 0) return;
+
             return (
               <Link key={id} href={`/writings/${id}`} className="grid gap-1">
                 <div className="w-full h-full aspect-square border-2 rounded-md overflow-hidden">
