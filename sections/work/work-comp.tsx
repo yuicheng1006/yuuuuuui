@@ -34,7 +34,7 @@ export const WorkComp = React.memo(
           {works?.map((data, index) => {
             const { cover, id, properties } = data;
 
-            const { Name, skills, year, url } = properties;
+            const { Name, skills, year, url, order } = properties;
 
             let coverImage = '';
             if (cover && cover.type === 'external') {
@@ -60,6 +60,12 @@ export const WorkComp = React.memo(
             }
 
             const isUIOnly = tags?.some((tag) => tag.name === '切版');
+
+            console.log('order', order);
+
+            if (order && order.type === 'rich_text' && order?.rich_text?.[0]?.plain_text === '0')
+              return;
+
             return (
               <Link
                 key={id}
