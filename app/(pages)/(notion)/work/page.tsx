@@ -26,7 +26,7 @@ export default async function Home() {
     <>
       <SectionTitle title="WORKS" />
       <div className="overflow-auto mt-[1.5vw]">
-        <WorkComp datas={datas} years={['All', ...years]} />
+        <WorkComp datas={datas} years={years} />
       </div>
     </>
   );

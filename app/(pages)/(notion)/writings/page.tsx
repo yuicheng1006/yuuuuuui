@@ -27,7 +27,7 @@ export default async function Page() {
     <>
       <SectionTitle title="WRITINGS" />
       <div className="overflow-auto mt-[1.5vw]">
-        <WritingsComp datas={datas} tags={['All', ...tags]} />
+        <WritingsComp datas={datas} tags={tags} />
       </div>
     </>
   );

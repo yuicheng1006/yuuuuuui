@@ -30,12 +30,15 @@ export default async function Image({
     join(process.cwd(), 'public/fonts/NotoSansTC-Black.ttf'),
   );
 
+  console.log('result', result);
+
   return new ImageResponse(
     (
       <div
         style={{
+          position: 'relative',
           fontSize: 68,
-          color: '#55534F',
+          color: '#ffffff',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -44,7 +47,23 @@ export default async function Image({
           background: 'white',
         }}
       >
-        {result?.mountainName ?? 'No result found'}
+        <img
+          src={result?.images?.[0]}
+          alt={result?.mountainName ?? 'Mountain'}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            objectFit: 'cover',
+            width: '1200px',
+            height: '630px',
+            zIndex: -1,
+            filter: 'brightness(0.6)',
+          }}
+        />
+        {result?.mountainName ?? 'Mountain'}
       </div>
     ),
     {

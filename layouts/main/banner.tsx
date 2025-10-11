@@ -61,13 +61,13 @@ export default function Banner() {
                     },
                   )}
                 >
-                  <CardContent className="h-full flex aspect-video items-center justify-center p-0">
+                  <CardContent className="w-full h-full flex aspect-video items-center justify-center p-0">
                     <Image
                       src={`/banner/banner_0${index + 1}.jpg`}
-                      alt=""
+                      alt="my goals c:"
                       width="1000"
                       height="1000"
-                      className="w-full h-full object-cover object-center aspect-square"
+                      className="max-w-full max-h-full w-full h-full object-cover object-center aspect-square"
                     />
                   </CardContent>
                 </Card>

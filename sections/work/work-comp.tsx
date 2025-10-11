@@ -42,6 +42,11 @@ export const WorkComp = React.memo(
             }
             let name = 'No Category';
             if (Name && Name.type === 'title') {
+              console.log(
+                'Name.title?.[0]?.plain_text',
+                Name,
+                Name.title?.[0]?.plain_text,
+              );
               name = Name.title?.[0]?.plain_text || 'No Category';
             }
 
@@ -61,9 +66,11 @@ export const WorkComp = React.memo(
 
             const isUIOnly = tags?.some((tag) => tag.name === '切版');
 
-            console.log('order', order);
-
-            if (order && order.type === 'rich_text' && order?.rich_text?.[0]?.plain_text === '0')
+            if (
+              order &&
+              order.type === 'rich_text' &&
+              order?.rich_text?.[0]?.plain_text === '0'
+            )
               return;
 
             return (
@@ -82,7 +89,7 @@ export const WorkComp = React.memo(
                   className="w-full h-auto aspect-[5/3] object-cover rounded-lg border-2"
                 />
                 <h2 className="text-gray-600 font-bold">{name}</h2>
-                <div className="flex gap-1.5">
+                <div className="flex flex-wrap gap-1.5">
                   {tags?.map((tag) => (
                     <Badge variant="outline" key={tag.id}>
                       {tag.name}

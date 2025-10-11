@@ -4,8 +4,6 @@ import { cn } from '@/lib/utils';
 
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
-import { Button } from '@/components/ui/button';
-
 type ResponseType = {
   type?: 'year' | 'category';
   tags: string[];
@@ -19,6 +17,8 @@ export const Classification = ({
   datas,
   onClick,
 }: ResponseType) => {
+  const finalTags = ['All', ...tags.sort((a, b) => b.localeCompare(a))];
+
   const yearTotalCount = (year: string) => {
     const filteredData = datas?.filter((data) => {
       const { properties } = data;
@@ -53,7 +53,7 @@ export const Classification = ({
         'pt-2',
       )}
     >
-      {tags.map((tag) => (
+      {finalTags.map((tag) => (
         <li key={tag} className="relative">
           <button
             className="mx-3 pt-1.5 pb-1 font-bold border-b-2 border-transparent hover:border-b-black focus:border-b-black"
