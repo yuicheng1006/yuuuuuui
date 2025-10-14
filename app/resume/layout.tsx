@@ -10,7 +10,11 @@ const roboto = Roboto({
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={cn(roboto.variable, 'max-w-4xl w-full', ' mx-auto md:py-8')}
+      className={cn(
+        roboto.variable,
+        'max-w-4xl w-full h-full',
+        'mx-auto md:my-12',
+      )}
     >
       {children}
     </div>
