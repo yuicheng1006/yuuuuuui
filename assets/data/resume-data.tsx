@@ -4,7 +4,7 @@ export const experiences = [
     role: 'Front End Developer',
     duration: '04/2021 - 03/2025',
     details: [
-      'Developing two internal system platforms (EIP and DXP) using Next.js     (App Router and Pages Router), Material UI, and React Hook Form.',
+      'Developing two internal system platforms (DXP and EIP) using Next.js (App Router and Pages Router), Material UI, and React Hook Form.',
       'Implementing new features and functionalities for eCommerce platforms with Next.js, TypeScript, Tailwind CSS, and React Hook Form.',
       'Integrating third-party payment systems such as LINE Pay and ECPay into order workflows using API routes in Next.js App Router.',
       'Integrating Material UI, shadcn/ui, and other component libraries into projects to enhance development efficiency and design consistency.',

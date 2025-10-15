@@ -295,6 +295,7 @@
   position: absolute;
   top: -18px;
   left: -5px;
+  font-family: "Segoe UI Symbol"
 }
 .article-item blockquote::after {
   content: '✿ ✿ ✿';
@@ -303,6 +304,7 @@
   position: absolute;
   bottom: -18px;
   right: -5px;
+  font-family: "Segoe UI Symbol"
 }
 
 .article-item a {

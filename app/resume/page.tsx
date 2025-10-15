@@ -1,4 +1,4 @@
-import { Resume } from '@/app/resume/components';
+import { Resume } from '@/sections/resume/index';
 
 export default async function Page() {
   return <Resume />;

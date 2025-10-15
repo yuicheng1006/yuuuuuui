@@ -6,6 +6,7 @@ import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 import { Badge } from '@/components/ui/badge';
 import { NotFoundComp } from '@/components/not-found-comp';
+import { MetaInfoLink } from '@/components/meta-info-link';
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> },
@@ -66,11 +67,15 @@ export default async function Page({
       </h3>
 
       {link !== '' && (
-        <Link href={link} target="_blank" className="flex justify-center">
-          <Rose className="text-main" />
-        </Link>
+        <div className='flex justify-center'>
+          <MetaInfoLink url={link}>
+            <Link href={link} target="_blank" className="flex justify-center">
+              <Rose className="text-main" />
+            </Link>
+          </MetaInfoLink>
+        </div>
       )}
-      <div className="flex justify-center gap-1.5 mt-4">
+      <div className="flex flex-wrap justify-center gap-1.5 mt-4">
         {tags?.map((tag) => (
           <Badge variant="outline" key={tag.id}>
             {tag.name}

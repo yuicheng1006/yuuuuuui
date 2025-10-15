@@ -5,7 +5,8 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { Printer } from 'lucide-react';
 import Link from 'next/link';
-import { experiences, skills } from '@/app/resume/data/resume-data';
+import { experiences, skills } from '@/assets/data/resume-data';
+import { MetaInfoLink } from '@/components/meta-info-link';
 
 const SubTitle = ({
   title,
@@ -105,7 +106,7 @@ export function Resume() {
               </h3>
               <section className="md:block hidden">
                 <SubTitle title="/ ABOUT ME" className="mt-10" />
-                <p className="font-semibold">
+                <p className="font-semibold break-words">
                   Hi, I’m Yui. A Front-End Developer with 4 years of experience
                   building and maintaining responsive websites in the marketing
                   consulting industry. Passionate about creating innovative and
@@ -123,7 +124,7 @@ export function Resume() {
           <div className="md:col-span-3 flex flex-col md:gap-y-18 gap-y-12">
             <section className="md:hidden block">
               <SubTitle title="/ ABOUT ME" />
-              <p className="md:text-base text-sm font-semibold">
+              <p className="md:text-base text-sm font-semibold hyphens-auto">
                 Hi, I’m Yui. A Front-End Developer with 4 years of experience
                 building and maintaining responsive websites in the marketing
                 consulting industry. Passionate about creating innovative and
@@ -146,13 +147,15 @@ export function Resume() {
                 </p>
                 <p className="flex items-center gap-2 font-semibold">
                   {`>>`}
-                  <Link
-                    href="https://yuuuuuui.com"
-                    target="_blank"
-                    className="text-sub"
-                  >
-                    https://yuuuuuui.com
-                  </Link>
+                  <MetaInfoLink url="https://yuuuuuui.com" metadata={{}}>
+                    <Link
+                      href="https://yuuuuuui.com"
+                      target="_blank"
+                      className="text-sub"
+                    >
+                      https://yuuuuuui.com
+                    </Link>
+                  </MetaInfoLink>
                 </p>
               </div>
               <p className="font-semibold">Mobile No. (+886) 0933596919</p>
@@ -163,13 +166,13 @@ export function Resume() {
                   <SubTitle title="/ WORK EXPERIENCE" />
                   <p className="md:text-lg font-semibold mb-4">{`>> ${experience.role}`}</p>
                   <p className="md:text-lg font-semibold mb-4">
-                    {experience.company} | {experience.duration}
+                    {experience.company} <span className='px-2'>|</span> {experience.duration}
                   </p>
                   <ul className="pl-4">
                     {experience.details.map((detail, index) => (
                       <li
                         className={cn(
-                          'md:text-base text-sm font-semibold',
+                          'md:text-base text-sm font-semibold hyphens-auto',
                           '-indent-[1em] mb-2',
                         )}
                         key={index}
@@ -207,20 +210,21 @@ export function Resume() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-10">
-        <p className='mb-2 font-semibold'>
-          If you want to see more about me,
-          <br /> feel free to check out my website  c:
+        <p className="mb-2 font-semibold">
+          If you want to know more about me,
+          <br /> feel free to check out my website c:
         </p>
-
-        <Link href="https://yuuuuuui.com" target="_blank">
-          <Image
-            aria-hidden
-            src="/logo.png"
-            alt="yui logo"
-            width={48}
-            height={48}
-          />
-        </Link>
+        <MetaInfoLink url="https://yuuuuuui.com">
+          <Link href="https://yuuuuuui.com" target="_blank">
+            <Image
+              aria-hidden
+              src="/logo.png"
+              alt="yui logo"
+              width={48}
+              height={48}
+            />
+          </Link>
+        </MetaInfoLink>
       </div>
     </>
   );
