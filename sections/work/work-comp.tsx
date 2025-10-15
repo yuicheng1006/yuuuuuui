@@ -42,11 +42,6 @@ export const WorkComp = React.memo(
             }
             let name = 'No Category';
             if (Name && Name.type === 'title') {
-              console.log(
-                'Name.title?.[0]?.plain_text',
-                Name,
-                Name.title?.[0]?.plain_text,
-              );
               name = Name.title?.[0]?.plain_text || 'No Category';
             }
 

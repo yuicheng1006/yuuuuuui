@@ -147,7 +147,7 @@ export function Resume() {
                 </p>
                 <p className="flex items-center gap-2 font-semibold">
                   {`>>`}
-                  <MetaInfoLink url="https://yuuuuuui.com" metadata={{}}>
+                  <MetaInfoLink url="https://yuuuuuui.com">
                     <Link
                       href="https://yuuuuuui.com"
                       target="_blank"
@@ -166,7 +166,8 @@ export function Resume() {
                   <SubTitle title="/ WORK EXPERIENCE" />
                   <p className="md:text-lg font-semibold mb-4">{`>> ${experience.role}`}</p>
                   <p className="md:text-lg font-semibold mb-4">
-                    {experience.company} <span className='px-2'>|</span> {experience.duration}
+                    {experience.company} <span className="px-2">|</span>{' '}
+                    {experience.duration}
                   </p>
                   <ul className="pl-4">
                     {experience.details.map((detail, index) => (
