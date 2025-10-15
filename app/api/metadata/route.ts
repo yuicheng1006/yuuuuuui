@@ -2,11 +2,8 @@ import { NextResponse } from 'next/server';
 import urlMetadata from 'url-metadata';
 
 export async function GET(request: Request) {
-  console.log('Received request:', request.url);
   const { searchParams } = new URL(request.url);
   const targetUrl = searchParams.get('url'); // 傳入要抓取的網址
-
-  console.log('Fetching metadata for URL:', targetUrl);
 
   if (!targetUrl) {
     return NextResponse.json(
@@ -21,7 +18,6 @@ export async function GET(request: Request) {
       timeout: 5000, // 設定請求超時時間
     });
 
-    console.log('Fetched metadata:', metadata, metadata['og:image']);
     return NextResponse.json({
       favico: metadata.favicons[0]?.href || '',
       title: metadata.title || '',
@@ -31,7 +27,7 @@ export async function GET(request: Request) {
   } catch (error) {
     // 處理超時或重定向過多的錯誤
     return NextResponse.json(
-      { error: 'Failed to fetch metadata'},
+      { error: 'Failed to fetch metadata' },
       { status: 500 },
     );
   }

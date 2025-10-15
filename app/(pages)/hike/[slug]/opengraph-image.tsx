@@ -30,8 +30,6 @@ export default async function Image({
     join(process.cwd(), 'public/fonts/NotoSansTC-Black.ttf'),
   );
 
-  console.log('result', result);
-
   return new ImageResponse(
     (
       <div
