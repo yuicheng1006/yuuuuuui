@@ -63,7 +63,7 @@ export const WritingsComp = React.memo(
                     className={cn(
                       'w-full h-full bg-[#F5F4F4]',
                       'flex justify-center items-center',
-                      'lg:text-4xl md:text-3xl text-2xl font-extrabold tracking-widest',
+                      'lg:text-4xl md:text-3xl text-xl font-extrabold tracking-widest',
                     )}
                   >
                     {categoryName}

@@ -67,7 +67,7 @@ export const MetaInfoLink = React.memo(
                           onError={() => setFaviconError(true)}
                         />
                       ) : (
-                        <span className="text-black text-xl flex-shrink-0">
+                        <span className="text-main text-xl flex-shrink-0">
                           ꙩ_ꙩ
                         </span>
                       )}
