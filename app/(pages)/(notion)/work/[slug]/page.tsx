@@ -5,7 +5,7 @@ import { fetchNotionPageContent } from '@/utils/notion-api';
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 import { Badge } from '@/components/ui/badge';
-import { NotFoundComp } from '@/components/not-found-comp';
+import { NotFoundComp } from '@/components/notfound-comp';
 import { MetaInfoLink } from '@/components/meta-info-link';
 
 export async function generateMetadata(

@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from 'next';
 
 import { HikeIntro } from '@/sections/hike/hike-intro';
 import { HikeDataProps } from '@/types/types';
-import { NotFoundComp } from '@/components/not-found-comp';
+import { NotFoundComp } from '@/components/notfound-comp';
 
 export async function generateMetadata({
   params,
