@@ -182,7 +182,7 @@ const ReelsMarqueeItems = async () => {
               )}
             >
               <iframe
-                className="absolute w-[146%] h-[1057px] -top-[65px]
+                className="absolute w-[151%] h-[1057px] -top-[65px]
             -left-[85px] overflow-hidden"
                 src={`https://www.instagram.com/reel/${title}/embed`}
                 height="1057"
